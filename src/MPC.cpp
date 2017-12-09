@@ -22,7 +22,6 @@ double dt = 0.1;
 const double Lf = 2.67;
 
 // reference velocity
-//double ref_v = 70;
 double ref_v = 70;
 size_t x_start = 0;
 size_t y_start = x_start + N;

@@ -102,8 +102,8 @@ int main() {
           vector<double> waypoints_x;
           vector<double> waypoints_y;
 
-          // transform waypoints to car's perspective
-          // this means we can consider px = 0, py = 0, and psi = 0
+          // transform waypoints to car's coordinates
+          // this means we can assume px = py = psi = 0
           // to simplifying future calculations
           for (int i = 0; i < ptsx.size(); i++) {
             double dx = ptsx[i] - px;

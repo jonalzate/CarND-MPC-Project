@@ -3,7 +3,14 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
-## Dependencies
+## Solution to Model Predictive Control 
+
+This repo contains the source code to the solution of the MPC project
+MPC.cpp, MPC.h and main.cpp
+
+
+
+## Project Dependencies
 
 * cmake >= 3.5
  * All OSes: [click here for installation instructions](https://cmake.org/install/)
@@ -48,17 +55,26 @@ is the vehicle starting offset of a straight line (reference). If the MPC implem
 4. Tips for setting up your environment are available [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 5. **VM Latency:** Some students have reported differences in behavior using VM's ostensibly a result of latency.  Please let us know if issues arise as a result of a VM environment.
 
-## Project Instructions and Rubric
+## Project  Rubric Points
 
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
+* Student describes their model in detail. This includes the state, actuators and update equations
 
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/b1ff3be0-c904-438e-aad3-2b5379f0e0c3/concepts/1a2255a0-e23c-44cf-8d41-39b8a3c8264a)
-for instructions and the project rubric.
+The equations used in this model were the ones from the Model Predictive Control video modules
+these include the position (x, y), orientation angle (psi), velocity, cross-track error (cte) and orientation error (epsi)
 
-## Hints!
+![equations](./equations.png "Equations")
 
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
+* Student discusses the reasoning behind the chosen N (timestep length) and dt (elapsed duration between timesteps) values. Additionally the student details the previous values tried.
+The time step length N was chosen on the recommendation from the module videos but from trying different values like 30, 25, 20, 15 I was able to noticed that a higher step length is 
+not really necessary because the environment changes fast enough that with shorter time steps we are still able to make close predictions for the cars position.
+
+* A polynomial is fitted to waypoints.
+First I converted waypoints to vehicles coordinates and then fitted the polynomial to obtain coefficients 
+
+* The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.
+to deal with latency the 100 ms delay was added and also some constants for each penalty to give higher weight to things like 
+vehicle staying in the middle of lane, velocity and steering too sharp changes were also penalized . 
+
+
+
 
